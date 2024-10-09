@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: postgres-pod
+    app: demo-voting-app
+  name: postgres-pod
+spec:
+  containers:
+  - name: postgres
+    image: postgres:15
+    ports:
+    - containerPort: 5432
+    env:
+      - name: POSTGRES_USER
+        value: "postgres"
+      - name: POSTGRES_PASSWORD
+        value: "postgres"
+      - name: POSTGRES_HOST_AUTH_METHOD
+        value: trust
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
